@@ -1,3 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500;700&display=swap');
+
+@mixin screen-desktop {
+  @media (min-width: 1024px) { @content; }
+}
+
 /* Box sizing rules */
 *,
 *::before,
@@ -23,7 +29,7 @@ dd {
 
 /* Remove list styles on ul, ol elements with a list role, which suggests default styling will be removed */
 ul[role='list'],
-ol[role='list'] {
+ol[role='list'], li {
   list-style: none;
 }
 
@@ -73,4 +79,30 @@ select {
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
   }
+}
+
+html {
+  --cyan: hsl(180, 66%, 49%);
+  --dark-violet: hsl(257, 27%, 26%);
+  --red: hsl(0, 87%, 67%);
+
+  --gray: hsl(0, 0%, 75%);
+  --grayish-violet: hsl(257, 7%, 63%);
+  --very-dark-blue: hsl(255, 11%, 22%);
+  --very-dark-violet: hsl(260, 8%, 14%);
+
+  --sm: 16px;
+  --md: 18px;
+  --lg: 20px;
+}
+
+body {
+  font-family: 'Poppins', sans-serif; // Choose your personal font
+  font-weight: 500;
+  font-size: var(--md);
+}
+
+#root {
+  min-width: 100vw;
+  min-height: 100vh;
 }

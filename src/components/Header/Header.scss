@@ -1,0 +1,142 @@
+@import '../../index.scss';
+
+header {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.header-up {
+  display: flex;
+  gap: 30px;
+  align-items: center;
+  padding: 50px 0;
+  justify-content: space-between;
+
+  @include screen-desktop {
+    justify-content: flex-start;
+  }
+}
+
+.header-logo {
+  height: 40px;
+}
+
+.header-mobile-icon {
+  display: block;
+
+  :hover {
+    cursor: pointer;
+  }
+
+  @include screen-desktop {
+    display: none;
+  }
+}
+
+@mixin mobileMenu($state){
+  @if $state == 'true' {
+      transform: translateY(0);
+      opacity: 100%;
+      visibility: visible;
+  } @else {
+      transform: translateY(-20%);
+      opacity: 0%;
+      visibility: hidden;
+  }
+}
+
+// .openMobMenu {
+//   transform: translateY(192px);
+// }
+
+.header-mobile-false {
+  @include mobileMenu('false')
+}
+
+.header-mobile-true {
+  @include mobileMenu('true')
+}
+
+.header-mobile-menu {
+  display: flex;
+  flex-direction: column;
+
+  width: 100%;
+  padding: 0 20px;
+
+  color: white;
+  background-color: var(--dark-violet);
+  border-radius: 12px;
+
+  transition: 0.4s all ease;
+  position: absolute;
+  top: 10ch;
+
+  ul {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+    width: 100%;
+    padding: 36px 0;
+
+    li:hover {
+      color: var(--gray);
+    }
+  }
+
+  ul:last-child {
+    border-top: 1px solid var(--gray);
+
+    li:last-child {
+      background-color: var(--cyan);
+      width: 100%;
+      padding: 8px;
+      text-align: center;
+      border-radius: 50ch;
+
+      &:hover {
+        background-color: lighten(hsl(180, 66%, 49%), 20%);
+        color: var(--dark-violet);
+      }
+    }
+  }
+}
+
+.header-desktop-menu {
+  display: none;
+
+  @include screen-desktop {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+
+    ul {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      color: var(--grayish-violet);
+
+      li:hover {
+        color: var(--very-dark-violet);
+        cursor: pointer;
+      }
+    }
+
+    ul:last-child {
+      gap: 30px;
+
+      li:last-child {
+        background-color: var(--cyan);
+        color: white;
+        padding: 8px 20px;
+        border-radius: 50ch;
+
+        &:hover {
+          background-color: lighten(hsl(180, 66%, 49%), 20%);
+        }
+      }
+    }
+  }
+}
