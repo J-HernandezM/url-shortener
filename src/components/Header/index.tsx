@@ -1,5 +1,5 @@
-import logo from '../../../public/images/logo.svg'
-import illustration from '../../../public/images/illustration-working.svg'
+import logo from '../../assets/images/logo.svg'
+import illustration from '../../assets/images/illustration-working.svg'
 import './Header.scss'
 import { useState } from 'react'
 
@@ -20,12 +20,12 @@ function Header () {
       </div>
 
       <div className="header-down">
-        <img src={illustration} alt="Illustration of a person working" />
         <div className="header-info">
-          <h1 className="header-title"></h1>
-          <h2 className="header-description"></h2>
+          <h1 className="header-title">More than just shorter links</h1>
+          <h2 className="header-description">Build your brand&apos;s recognition and get detailed insights on how your links are performing.</h2>
           <button className='header-btn'>Get Started</button>
         </div>
+        <img className='header-illustration' src={illustration} alt="Illustration of a person working" />
       </div>
     </header>
   )

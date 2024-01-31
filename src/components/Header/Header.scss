@@ -1,5 +1,17 @@
 @import '../../index.scss';
 
+@mixin actionBtn {
+  background-color: var(--cyan);
+  color: white;
+  padding: 8px 20px;
+  border-radius: 50cqh;
+
+  &:hover {
+    background-color: lighten(hsl(180, 66%, 49%), 20%);
+    cursor: pointer;
+  }
+}
+
 header {
   display: flex;
   flex-direction: column;
@@ -46,10 +58,6 @@ header {
   }
 }
 
-// .openMobMenu {
-//   transform: translateY(192px);
-// }
-
 .header-mobile-false {
   @include mobileMenu('false')
 }
@@ -63,6 +71,7 @@ header {
   flex-direction: column;
 
   width: 100%;
+  max-width: 500px;
   padding: 0 20px;
 
   color: white;
@@ -71,7 +80,8 @@ header {
 
   transition: 0.4s all ease;
   position: absolute;
-  top: 10ch;
+  top: 12cqh;
+  right: 0;
 
   ul {
     display: flex;
@@ -90,17 +100,19 @@ header {
     border-top: 1px solid var(--gray);
 
     li:last-child {
-      background-color: var(--cyan);
+      @include actionBtn();
       width: 100%;
-      padding: 8px;
       text-align: center;
-      border-radius: 50ch;
 
       &:hover {
-        background-color: lighten(hsl(180, 66%, 49%), 20%);
         color: var(--dark-violet);
       }
     }
+  }
+
+  @include screen-desktop {
+    opacity: 0%;
+    visibility: hidden;
   }
 }
 
@@ -128,15 +140,71 @@ header {
       gap: 30px;
 
       li:last-child {
-        background-color: var(--cyan);
-        color: white;
-        padding: 8px 20px;
-        border-radius: 50ch;
-
-        &:hover {
-          background-color: lighten(hsl(180, 66%, 49%), 20%);
-        }
+        @include actionBtn()
       }
     }
   }
+}
+
+.header-down {
+  display: flex;
+  flex-direction: column-reverse;
+
+  @include screen-desktop {
+    flex-direction: row;
+  }
+}
+
+.header-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 50%;
+  margin-top: 20px;
+
+  @include screen-desktop {
+    align-items: start;
+    margin-top: 80px;
+  }
+}
+
+.header-title {
+  color: var(--very-dark-blue);
+  font-size: var(--mxl);
+  line-height: 1.2;
+  text-align: center;
+
+  @include screen-desktop {
+    font-size: var(--xl);
+    text-align: start;
+  }
+}
+
+.header-description {
+  color: var(--grayish-violet);
+  font-size: var(--md);
+  font-weight: 500;
+  margin-bottom: 30px;
+  text-align: center;
+
+  @include screen-desktop {
+    font-size: var(--lg);
+    text-align: start;
+  }
+}
+
+.header-btn {
+  @include actionBtn();
+  outline: 1px transparent solid;
+  border: 1px transparent solid;
+  padding: 12px 32px;
+
+  @include screen-desktop {
+    padding: 8px 32px;
+  }
+}
+
+.header-illustration {
+  max-width: none;
+  width: 150%;
 }
