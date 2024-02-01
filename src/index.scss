@@ -4,6 +4,35 @@
   @media (min-width: 1024px) { @content; }
 }
 
+@mixin for-tablet-portrait-up {
+  @media (min-width: 600px) { @content; }
+}
+
+@mixin screen-desktop {
+  @media (min-width: 1024px) { @content; }
+}
+
+@mixin limit {
+  padding: 0 7.5%;
+}
+
+@mixin transparent-border {
+  outline: 1px transparent solid;
+  border: 1px transparent solid;
+}
+
+@mixin actionBtn {
+  background-color: var(--cyan);
+  color: white;
+  padding: 8px 20px;
+  border-radius: 50cqh;
+
+  &:hover {
+    background-color: lighten(hsl(180, 66%, 49%), 20%);
+    cursor: pointer;
+  }
+}
+
 /* Box sizing rules */
 *,
 *::before,
@@ -86,6 +115,7 @@ html {
   --dark-violet: hsl(257, 27%, 26%);
   --red: hsl(0, 87%, 67%);
 
+  --bg1: #f0f1f6;
   --gray: hsl(0, 0%, 75%);
   --grayish-violet: hsl(257, 7%, 63%);
   --very-dark-blue: hsl(255, 11%, 22%);
@@ -94,6 +124,7 @@ html {
   --sm: 16px;
   --md: 18px;
   --lg: 20px;
+  --mlg: 30px;
   --mxl: 44px;
   --xl: 68px;
 }

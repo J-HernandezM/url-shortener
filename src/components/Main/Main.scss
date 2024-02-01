@@ -1,0 +1,114 @@
+@import '../../index.scss';
+
+main {
+  @include limit;
+  background-color: var(--bg1);
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+
+  width: 100%;
+  max-width: 520px;
+  padding: 24px;
+  margin: 0 auto;
+
+  background-color: var(--dark-violet);
+  background-image: url('../../assets/images/bg-shorten-mobile.svg');
+  background-repeat: no-repeat;
+  background-position: 100% 0%;
+
+  border-radius: 12px;
+  transform: translateY(-50%);
+
+  @include screen-desktop {
+    justify-content: space-between;
+    flex-direction: row;
+    gap: 0px;
+    max-width: none;
+    padding: 5% 7.5%;
+    background-image: url('../../assets/images/bg-shorten-desktop.svg');
+    background-size: 120%;
+  }
+}
+
+.form-input-box {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  width: 100%;
+  height: fit-content;
+
+  @include screen-desktop {
+    width: 80%;
+  }
+
+  input {
+    width: 100%;
+    height: 50px;
+    padding-left: 24px;
+    border-radius: 8px;
+    @include transparent-border;
+    color: var(--dark-violet);
+
+    &[aria-invalid="true"] {
+      border: 2px var(--red) solid;
+
+      &::placeholder {
+        color: lighten(hsl(0, 87%, 67%), 15%);
+      }
+
+      & ~ span {
+        display: block;
+      }
+    }
+  }
+
+  span {
+    display: none;
+    font-style: italic;
+    font-size: var(--sm);
+    color: var(--red);
+
+    @include screen-desktop {
+      position: absolute;
+      bottom: -24px;
+      left: 4px;
+    }
+  }
+}
+
+.form-btn {
+  @include actionBtn;
+  @include transparent-border;
+  height: 50px;
+  padding: 11.5px 24px ;
+  border-radius: 8px;
+}
+
+.main-info {
+  text-align: center;
+
+  h3 {
+    font-size: var(--mlg);
+    color: var(--dark-violet);
+    margin-bottom: 20px;
+
+    @include screen-desktop {
+      font-size: var(--mxl);
+      margin: 0;
+    }
+  }
+
+  p {
+    color: var(--grayish-violet);
+    margin: 0 auto;
+    max-width: 530px;
+  }
+}
+
+
+
+

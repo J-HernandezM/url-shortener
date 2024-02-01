@@ -8,11 +8,11 @@ import Main from './components/Main'
 
 function App () {
   return (
-    <div className='limit'>
+    <>
       <Header />
       <Main />
       <Footer />
-    </div>
+    </>
   )
 }
 

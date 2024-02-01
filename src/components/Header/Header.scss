@@ -1,21 +1,11 @@
 @import '../../index.scss';
 
-@mixin actionBtn {
-  background-color: var(--cyan);
-  color: white;
-  padding: 8px 20px;
-  border-radius: 50cqh;
-
-  &:hover {
-    background-color: lighten(hsl(180, 66%, 49%), 20%);
-    cursor: pointer;
-  }
-}
-
 header {
   display: flex;
   flex-direction: column;
   position: relative;
+  margin-bottom: 160px;
+  @include limit;
 }
 
 .header-up {
@@ -194,9 +184,8 @@ header {
 }
 
 .header-btn {
-  @include actionBtn();
-  outline: 1px transparent solid;
-  border: 1px transparent solid;
+  @include actionBtn;
+  @include transparent-border;
   padding: 12px 32px;
 
   @include screen-desktop {
@@ -207,4 +196,9 @@ header {
 .header-illustration {
   max-width: none;
   width: 150%;
+
+  @include for-tablet-portrait-up {
+    width: 100%;
+    max-width: 650px;
+  }
 }

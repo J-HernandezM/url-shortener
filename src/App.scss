@@ -1,11 +1,5 @@
 @import './index.scss';
 
 .limit {
-  width: 85%;
   border: 1px solid black;
-  margin: 0 auto;
-
-  @include screen-desktop {
-    width: 90%;
-  }
 }
