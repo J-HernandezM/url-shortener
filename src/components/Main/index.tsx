@@ -16,6 +16,8 @@ interface UrlProps {
   id?: `${string}-${string}-${string}-${string}-${string}`
 }
 
+const API = 'https://thingproxy.freeboard.io/fetch/https://cleanuri.com/api/v1/shorten'
+
 const cards = [
   {
     title: 'Brand Recognition',
@@ -41,13 +43,29 @@ function Main () {
     e.preventDefault()
     const input = (e.target as HTMLFormElement)[0] as HTMLInputElement
     const text = input.value
+    void postLink(text)
+  }
 
-    const newObject = {
-      oldLink: text,
-      newLink: 'https://rel.ink/gob3x9',
-      id: crypto.randomUUID()
+  const postLink = async (t: string) => {
+    try {
+      const response = await fetch(API, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded'
+        },
+        body: 'url=' + encodeURIComponent(t)
+      })
+      const data = await response.json()
+
+      const newObject = {
+        oldLink: t,
+        newLink: data.result_url,
+        id: crypto.randomUUID()
+      }
+      setLinks([...links, newObject])
+    } catch (e) {
+      console.log('An error ocurred', e)
     }
-    setLinks([...links, newObject])
   }
 
   return (
@@ -96,29 +114,29 @@ function Card ({ title, description, image }: CardProps) {
 function UrlBox ({ oldLink, newLink }: UrlProps) {
   const copyThis = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     const button = e.target
-    if (button instanceof HTMLButtonElement) {
-      if (button.previousElementSibling instanceof HTMLParagraphElement) {
-        const text = button.previousElementSibling.innerHTML
-        const clipboard = navigator.clipboard
 
-        clipboard.writeText(text).then(() => {
-          button.classList.add('copied')
-        }, () => {
-          alert('Something went wrong while copying to clipboard')
-        })
-      }
-    }
+    if (!(button instanceof HTMLButtonElement)) { return }
+    if (!(button.previousElementSibling instanceof HTMLAnchorElement)) { return }
+
+    const text = button.previousElementSibling.innerHTML
+    const clipboard = navigator.clipboard
+
+    clipboard.writeText(text).then(() => {
+      button.classList.add('copied')
+    }, () => {
+      alert('Something went wrong while copying to clipboard')
+    })
   }
 
   return (
     <div className="url-box">
-          <p className="url-old">{oldLink}</p>
-          <hr />
-          <div className='url-separate'>
-            <p className="url-new">{newLink}</p>
-            <button onClick={copyThis} className="url-copy"></button>
-          </div>
-        </div>
+      <p className="url-old">{oldLink}</p>
+      <hr />
+      <div className='url-separate'>
+        <a href={newLink} target='_blank' className="url-new" rel="noreferrer">{newLink}</a>
+        <button onClick={copyThis} className="url-copy"></button>
+      </div>
+    </div>
   )
 }
 
