@@ -3,6 +3,7 @@
 main {
   @include limit;
   background-color: var(--bg1);
+  padding-bottom: 100px;
 }
 
 form {
@@ -109,6 +110,99 @@ form {
   }
 }
 
+.main-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 80px;
+  margin-top: 100px;
 
+  .cards:nth-child(2)::before, .cards:nth-child(3)::before {
+    position: absolute;
+    top: -80px;
+    content: "";
+    width: 8px;
+    height: 80px;
+    background-color: var(--cyan);
+  }
 
+  @include screen-desktop {
+    flex-direction: row;
+    gap: 40px;
 
+    .cards:nth-child(2)::before, .cards:nth-child(2)::after {
+      top: 50%;
+      transform: translateY(-50%);
+      left: -40px;
+      width: 40px;
+      height: 8px;
+    }
+
+    .cards:nth-child(3)::before {
+      display: none;
+    }
+
+    .cards:nth-child(2)::after {
+      position: absolute;
+      content: "";
+      background-color: var(--cyan);
+      left: auto;
+      right: -40px;
+    }
+
+    .cards:nth-child(2) {
+      margin-top: 50px;
+      margin-bottom: -50px;
+    }
+    .cards:nth-child(3) {
+      margin-top: 100px;
+      margin-bottom: -100px;
+    }
+  }
+}
+
+.cards {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+
+  width: 100%;
+  max-width: 580px;
+  padding: 0 30px 30px;
+  margin: 0 auto;
+  border-radius: 14px;
+
+  background-color: #fff;
+
+  @include screen-desktop {
+    align-items: flex-start;
+    padding-bottom: 40px;
+  }
+}
+
+.card-icon-box {
+  background-color: var(--dark-violet);
+  padding: 23px;
+  border-radius: 50cqh;
+  transform: translateY(-50%);
+}
+
+.card-title {
+  color: var(--very-dark-violet);
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 24px;
+  @include screen-desktop {
+    margin-bottom: 18px;
+  }
+}
+
+.card-description {
+  color: var(--grayish-violet);
+  text-align: center;
+  text-wrap: pretty;
+
+  @include screen-desktop {
+    text-align: left;
+  }
+}

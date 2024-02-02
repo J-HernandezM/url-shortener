@@ -3,6 +3,30 @@ import iconBrand from '../../assets/images/icon-brand-recognition.svg'
 import iconDetailed from '../../assets/images/icon-detailed-records.svg'
 import iconFully from '../../assets/images/icon-fully-customizable.svg'
 
+interface CardProps {
+  title: string
+  description: string
+  image: string
+}
+
+const cards = [
+  {
+    title: 'Brand Recognition',
+    description: 'Boost your brand recognition with each click. Generic links don&apos;t mean a thing. Branded links help instil confidence in your content.',
+    image: iconBrand
+  },
+  {
+    title: 'Detailed Records',
+    description: 'Gain insights into who is clicking your links. Knowing when and where people engage with your content helps inform better decisions.',
+    image: iconDetailed
+  },
+  {
+    title: 'Fully Customizable',
+    description: 'Improve brand awareness and content discoverability through customizable links, supercharging audience engagement.',
+    image: iconFully
+  }
+]
+
 function Main () {
   return (
     <main>
@@ -19,30 +43,28 @@ function Main () {
           <p>Track how your links are performing across the web with our advanced statistics dashboard.</p>
         </div>
         <div className="main-cards">
-          <div className='cards'>
-            <div className='card-icon-box'>
-              <img className='card-icon' src={iconBrand} alt="Brand recognition detailed" />
-            </div>
-            <p className='card-title'>Brand Recognition</p>
-            <p className='card-description'>Boost your brand recognition with each click. Generic links don&apos;t mean a thing. Branded links help instil confidence in your content.</p>
-          </div>
-          <div className='cards'>
-            <div className='card-icon-box'>
-              <img className='card-icon' src={iconDetailed} alt="Detailed records icon" />
-            </div>
-            <p className='card-title'>Detailed Records</p>
-            <p className='card-description'>Gain insights into who is clicking your links. Knowing when and where people engage with your content helps inform better decisions.</p>
-          </div>
-          <div className='cards'>
-            <div className='card-icon-box'>
-              <img className='card-icon' src={iconFully} alt="Fully customizable icon" />
-            </div>
-            <p className='card-title'>Fully Customizable</p>
-            <p className='card-description'>Improve brand awareness and content discoverability through customizable links, supercharging audience engagement.</p>
-          </div>
+          {cards.map((card) =>
+            <Card
+              title={card.title}
+              description={card.description}
+              image={card.image}
+              key={card.title}
+            />)}
         </div>
       </section>
     </main>
+  )
+}
+
+function Card ({ title, description, image }: CardProps) {
+  return (
+    <div className='cards'>
+      <div className='card-icon-box'>
+        <img className='card-icon' src={image} alt="Brand recognition detailed" />
+      </div>
+      <p className='card-title'>{title}</p>
+      <p className='card-description'>{description}</p>
+    </div>
   )
 }
 
