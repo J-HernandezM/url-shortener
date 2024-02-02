@@ -128,6 +128,7 @@ form {
   @include screen-desktop {
     flex-direction: row;
     gap: 40px;
+    margin-bottom: 80px;
 
     .cards:nth-child(2)::before, .cards:nth-child(2)::after {
       top: 50%;
@@ -204,5 +205,108 @@ form {
 
   @include screen-desktop {
     text-align: left;
+  }
+}
+
+.main-urls {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  margin-bottom: 78px;
+}
+
+@keyframes appear {
+  0% {
+    transform: translateY(-20%);
+    opacity: 0%;
+    visibility: hidden;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 100%;
+    visibility: visible;
+  }
+}
+
+.url-box {
+  display: flex;
+  flex-direction: column;
+
+  width: 100%;
+  padding: 16px;
+  border-radius: 12px;
+
+  font-size: var(--lg);
+  background-color: #fff;
+
+  animation: appear .8s ease;
+
+  .url-separate {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  hr {
+    margin: 16px -16px;
+  }
+
+  @include screen-desktop {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 30px;
+
+    .url-separate {
+      flex-direction: row;
+      align-items: center;
+      gap: 24px;
+    }
+
+    hr {
+      display: none;
+    }
+  }
+}
+
+.url-old {
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+
+  color: var(--dark-violet);
+}
+
+.url-new {
+  color: var(--cyan)
+}
+
+.url-copy {
+  @include actionBtn;
+  @include transparent-border;
+  border-radius: 8px;
+  width: 100%;
+  transition: all .3s;
+
+  &::before {
+    content: 'Copy';
+  }
+
+  @include screen-desktop {
+    padding: 8px 40px;
+  }
+}
+
+.copied {
+  background-color: var(--dark-violet);
+  cursor: pointer;
+
+  &::before {
+    content: 'Copied!'
+  }
+
+  &:hover {
+    background-color: var(--dark-violet);
   }
 }
