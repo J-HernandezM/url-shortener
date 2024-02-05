@@ -65,7 +65,7 @@ function Main () {
           <input required type="url" name="url" id="url" placeholder='Shorten a link here...' aria-invalid="false" aria-describedby='url-error'/>
           <span id='url-error'>Please add a link</span>
         </div>
-        <button className='form-btn'>Shorten it!</button>
+        <button aria-label='form-btn' className='form-btn'>Shorten it!</button>
       </form>
       <section className='main-urls'>
         {links.map((link) => <UrlBox key={link.id} oldLink={link.oldLink} newLink={link.newLink}/>)}
