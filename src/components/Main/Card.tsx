@@ -10,7 +10,7 @@ function Card ({ title, description, image }: CardProps) {
       <div className='card-icon-box'>
         <img className='card-icon' src={image} alt="Brand recognition detailed" />
       </div>
-      <p className='card-title'>{title}</p>
+      <p data-testid='paragraph-title' className='card-title'>{title}</p>
       <p className='card-description'>{description}</p>
     </div>
   )
