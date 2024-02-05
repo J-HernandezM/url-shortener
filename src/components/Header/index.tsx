@@ -2,6 +2,7 @@ import logo from '../../assets/images/logo.svg'
 import illustration from '../../assets/images/illustration-working.svg'
 import './Header.scss'
 import { useState } from 'react'
+import Menu from './Menu'
 
 function Header () {
   const [open, setOpen] = useState<boolean>(false)
@@ -28,22 +29,6 @@ function Header () {
         <img className='header-illustration' src={illustration} alt="Illustration of a person working" />
       </div>
     </header>
-  )
-}
-
-function Menu () {
-  return (
-    <>
-      <ul>
-        <li>Features</li>
-        <li>Pricing</li>
-        <li>Resources</li>
-      </ul>
-      <ul>
-        <li>Login</li>
-        <li>Sign Up</li>
-      </ul>
-    </>
   )
 }
 
