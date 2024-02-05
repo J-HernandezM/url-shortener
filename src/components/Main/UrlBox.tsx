@@ -27,7 +27,7 @@ function UrlBox ({ oldLink, newLink }: UrlProps) {
       <hr />
       <div className='url-separate'>
         <a href={newLink} target='_blank' className="url-new" rel="noreferrer">{newLink}</a>
-        <button onClick={copyThis} className="url-copy"></button>
+        <button aria-label='copyUrl' onClick={copyThis} className="url-copy"></button>
       </div>
     </div>
   )
