@@ -38,10 +38,14 @@ function Main () {
     const input: HTMLInputElement | null = document.querySelector('#url')
     if (input === null) { return }
     const text = input.value
-    void postLink(text)
+    if (text === '') {
+      input.setAttribute('aria-invalid', 'true')
+      return
+    }
+    void postLink(text, input)
   }
 
-  const postLink = async (t: string) => {
+  const postLink = async (t: string, i: HTMLInputElement) => {
     try {
       const response = await fetch(API, {
         method: 'POST',
@@ -50,17 +54,24 @@ function Main () {
         },
         body: 'url=' + encodeURIComponent(t)
       })
+
+      if (!response.ok) {
+        throw new Error('Failed to shorten link')
+      }
+
       const data = await response.json()
+      i.setAttribute('aria-invalid', 'false')
 
       const newObject = {
         oldLink: t,
         newLink: data.result_url,
         id: crypto.randomUUID()
       }
+
       setLinks([...links, newObject])
       localStorage.setItem('links', JSON.stringify([...localStorageLinks, newObject]))
     } catch (e) {
-      console.log('An error ocurred', e)
+      i.setAttribute('aria-invalid', 'true')
     }
   }
 
@@ -68,8 +79,8 @@ function Main () {
     <main>
       <form role='form' onSubmit={addLink}>
         <div className="form-input-box">
-          <input required type="url" name="url" id="url" placeholder='Shorten a link here...' aria-invalid="false" aria-describedby='url-error'/>
-          <span id='url-error'>Please add a link</span>
+          <input type="url" name="url" id="url" placeholder='Shorten a link here...' aria-invalid="false" aria-describedby='url-error'/>
+          <span id='url-error'>Please add a valid link</span>
         </div>
         <button aria-label='form-btn' className='form-btn'>Shorten it!</button>
       </form>
