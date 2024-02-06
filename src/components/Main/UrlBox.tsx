@@ -22,7 +22,7 @@ function UrlBox ({ oldLink, newLink }: UrlProps) {
   }
 
   return (
-    <div className="url-box">
+    <div role='url-box' className="url-box">
       <p className="url-old">{oldLink}</p>
       <hr />
       <div className='url-separate'>

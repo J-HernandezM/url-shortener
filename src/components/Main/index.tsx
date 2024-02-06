@@ -31,7 +31,8 @@ function Main () {
 
   const addLink = (e: FormEvent) => {
     e.preventDefault()
-    const input = (e.target as HTMLFormElement)[0] as HTMLInputElement
+    const input: HTMLInputElement | null = document.querySelector('#url')
+    if (input === null) { return }
     const text = input.value
     void postLink(text)
   }
@@ -60,14 +61,14 @@ function Main () {
 
   return (
     <main>
-      <form onSubmit={addLink}>
+      <form role='form' onSubmit={addLink}>
         <div className="form-input-box">
           <input required type="url" name="url" id="url" placeholder='Shorten a link here...' aria-invalid="false" aria-describedby='url-error'/>
           <span id='url-error'>Please add a link</span>
         </div>
         <button aria-label='form-btn' className='form-btn'>Shorten it!</button>
       </form>
-      <section className='main-urls'>
+      <section role='main-urls' className='main-urls'>
         {links.map((link) => <UrlBox key={link.id} oldLink={link.oldLink} newLink={link.newLink}/>)}
       </section>
       <section className='main-data'>
