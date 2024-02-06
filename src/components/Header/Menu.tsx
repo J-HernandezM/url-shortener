@@ -1,7 +1,7 @@
 function Menu () {
   return (
     <>
-      <ul>
+      <ul data-testid='menu-ul'>
         <li>Features</li>
         <li>Pricing</li>
         <li>Resources</li>
