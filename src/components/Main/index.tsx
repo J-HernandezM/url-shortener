@@ -79,7 +79,7 @@ function Main () {
     <main>
       <form role='form' onSubmit={addLink}>
         <div className="form-input-box">
-          <input type="url" name="url" id="url" placeholder='Shorten a link here...' aria-invalid="false" aria-describedby='url-error'/>
+          <input role="input" type="url" name="url" id="url" placeholder='Shorten a link here...' aria-invalid="false" aria-describedby='url-error'/>
           <span id='url-error'>Please add a valid link</span>
         </div>
         <button aria-label='form-btn' className='form-btn'>Shorten it!</button>
