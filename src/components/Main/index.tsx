@@ -28,6 +28,10 @@ const cards = [
 
 function Main () {
   const [links, setLinks] = useState<UrlProps[]>([])
+  let localStorageLinks: UrlProps[] = []
+
+  const result = localStorage.getItem('links')
+  localStorageLinks = (result != null) ? JSON.parse(result) : []
 
   const addLink = (e: FormEvent) => {
     e.preventDefault()
@@ -54,6 +58,7 @@ function Main () {
         id: crypto.randomUUID()
       }
       setLinks([...links, newObject])
+      localStorage.setItem('links', JSON.stringify([...localStorageLinks, newObject]))
     } catch (e) {
       console.log('An error ocurred', e)
     }
@@ -69,7 +74,7 @@ function Main () {
         <button aria-label='form-btn' className='form-btn'>Shorten it!</button>
       </form>
       <section role='main-urls' className='main-urls'>
-        {links.map((link) => <UrlBox key={link.id} oldLink={link.oldLink} newLink={link.newLink}/>)}
+        {localStorageLinks.map((link) => <UrlBox key={link.id} oldLink={link.oldLink} newLink={link.newLink}/>)}
       </section>
       <section className='main-data'>
         <div className="main-info">
