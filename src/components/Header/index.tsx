@@ -14,9 +14,9 @@ function Header () {
         <div className='header-desktop-menu'>
           <Menu />
         </div>
-        <i onClick={() => { setOpen(!open) }} className="fa-solid fa-bars fa-2xl header-mobile-icon" style={{ color: '#9e9aa7' }}></i>
+        <i role="icon" onClick={() => { setOpen(!open) }} className="fa-solid fa-bars fa-2xl header-mobile-icon" style={{ color: '#9e9aa7' }}></i>
       </div>
-      <div className={`header-mobile-${open} header-mobile-menu`}>
+      <div role='mob-menu' className={`header-mobile-${open} header-mobile-menu`}>
         <Menu />
       </div>
 
