@@ -27,3 +27,4 @@ dist-ssr
 *.xd
 *.fig
 .DS_Store
+.vercel
