@@ -20,6 +20,6 @@
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true
   },
-  "include": ["src", ".eslintrc.*", "vite.config.ts"], // Incluye el archivo de configuración de ESLint
+  "include": ["src", ".eslintrc.*", "vite.config.ts", "api", "api", "api/shortening.ts"], // Incluye el archivo de configuración de ESLint
   "references": [{ "path": "./tsconfig.node.json" }]
 }

@@ -6,8 +6,6 @@ import { useState, type FormEvent } from 'react'
 import Card from './Card'
 import UrlBox, { type UrlProps } from './UrlBox'
 
-const API = 'https://thingproxy.freeboard.io/fetch/https://cleanuri.com/api/v1/shorten'
-
 const cards = [
   {
     title: 'Brand Recognition',
@@ -47,19 +45,19 @@ function Main () {
 
   const postLink = async (t: string, i: HTMLInputElement) => {
     try {
-      const response = await fetch(API, {
+      const res = await fetch('/api/shortening', {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/x-www-form-urlencoded'
+          'Content-Type': 'application/json'
         },
-        body: 'url=' + encodeURIComponent(t)
+        body: JSON.stringify({ t })
       })
-
-      if (!response.ok) {
+          
+      if (!res.ok) {
         throw new Error('Failed to shorten link')
       }
-
-      const data = await response.json()
+      
+      const data = await res.json()
       i.setAttribute('aria-invalid', 'false')
 
       const newObject = {
@@ -71,6 +69,7 @@ function Main () {
       setLinks([...links, newObject])
       localStorage.setItem('links', JSON.stringify([...localStorageLinks, newObject]))
     } catch (e) {
+      console.error(e)
       i.setAttribute('aria-invalid', 'true')
     }
   }
